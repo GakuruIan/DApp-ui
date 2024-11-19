@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 import { CircleUser, Search } from "lucide-react";
@@ -40,12 +39,26 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/results" className="block py-2 px-3 md:p-0 text-white">
+                <Link
+                  to="/results"
+                  className="block py-2 px-3 md:p-0 text-white"
+                >
                   Results
                 </Link>
               </li>
               <li>
-                <Link to="/create-candidate" className="block py-2 px-3 md:p-0 text-white">
+                <Link
+                  to="/voting-settings"
+                  className="block py-2 px-3 md:p-0 text-white"
+                >
+                  Voting settings
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/create-candidate"
+                  className="block py-2 px-3 md:p-0 text-white"
+                >
                   Create Candidate
                 </Link>
               </li>
@@ -62,8 +75,8 @@ const Navbar = () => {
                   src={logo}
                   alt="Bordered avatar"
                 />
-                  
-                  {/* dropdown */}
+
+                {/* dropdown */}
                 <div
                   id="dropdown"
                   className="z-10 absolute top-10 right-[-6px]  rounded-lg shadow w-44 bg-dark-50"

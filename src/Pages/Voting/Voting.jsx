@@ -1,3 +1,5 @@
+import { useContext, useEffect, useState } from "react";
+
 // components
 import Wrapper from "../../components/Wrapper/Wrapper";
 import Button from "../../components/Button/Button";
@@ -8,8 +10,33 @@ import { CircleCheck } from "lucide-react";
 
 // image
 import image from "../../assets/astronaut.jpg";
+import image2 from "../../assets/astronaut2.jpg";
+import image3 from "../../assets/astronaut3.jpg";
+
+// context
+import AccountContext from "../../context/context";
 
 const Voting = () => {
+  const { account, contract } = useContext(AccountContext);
+  const [candidates, setCandidates] = useState([]);
+
+  const FetchCandidates = async () => {
+    try {
+      const result = await contract.methods
+        .getAllCandidates()
+        .send({ from: account });
+
+      setCandidates(result);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    FetchCandidates();
+  }, [candidates]);
+
   return (
     <div className="flex justify-center w-full">
       <Wrapper>
@@ -41,7 +68,7 @@ const Voting = () => {
                         className="h-20 w-20 rounded-md object-fit"
                       />
                     </div>
-                    <div className="w-full">Candidate name</div>
+                    <div className="w-full text-center">John doe</div>
                   </div>
                   <CircleCheck size={18} />
                 </label>
@@ -62,12 +89,12 @@ const Voting = () => {
                   <div className="flex items-center justify-center flex-col gap-y-2">
                     <div className="w-full text-lg font-semibold">
                       <img
-                        src={image}
+                        src={image2}
                         alt=""
                         className="h-20 w-20 rounded-md object-fit"
                       />
                     </div>
-                    <div className="w-full">Candidate name</div>
+                    <div className="w-full text-center">Jane Doe</div>
                   </div>
                   <CircleCheck size={18} />
                 </label>
@@ -88,12 +115,12 @@ const Voting = () => {
                   <div className="flex items-center justify-center flex-col gap-y-2">
                     <div className="w-full text-lg font-semibold">
                       <img
-                        src={image}
+                        src={image3}
                         alt=""
                         className="h-20 w-20 rounded-md object-fit"
                       />
                     </div>
-                    <div className="w-full">Candidate name</div>
+                    <div className="w-full text-center">Gakuru </div>
                   </div>
                   <CircleCheck size={18} />
                 </label>
